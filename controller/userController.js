@@ -1,4 +1,4 @@
-const User = require("../models/userModel");
+const User = require("../models/usersModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -9,9 +9,7 @@ const generateToken = (id) => {
   });
 };
 
-// @desc Register user
-// @route POST /api/users/register
-// @access Public
+//Register user
 exports.registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -45,9 +43,7 @@ exports.registerUser = async (req, res) => {
   }
 };
 
-// @desc Login user
-// @route POST /api/users/login
-// @access Public
+// Login user
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -76,9 +72,7 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-// @desc Get all users
-// @route GET /api/users
-// @access Private (optional)
+// Get all users
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.find().select("-password");
@@ -88,6 +82,7 @@ exports.getUsers = async (req, res) => {
   }
 };
 
+// Get user by ID
 exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select("-password");
