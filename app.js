@@ -8,8 +8,10 @@ app.use(express.json());
 app.use(cors());
 
 const userRoute = require("./routes/userRoute");
+const goalRoute = require("./routes/goalRoute");
 
 app.use("/api/users", userRoute);
+app.use("/api/goals", goalRoute);
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to GoalTracker App" });
