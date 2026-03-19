@@ -12,7 +12,7 @@ const generateToken = (id) => {
 //Register user
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { fullname, email, password } = req.body;
 
     // Check if user exists
     const userExists = await User.findOne({ email });
@@ -26,14 +26,14 @@ exports.registerUser = async (req, res) => {
 
     // Create user
     const user = await User.create({
-      name,
+      fullname,
       email,
       password: hashedPassword
     });
 
     res.status(201).json({
       _id: user._id,
-      name: user.name,
+      fullname: user.fullname,
       email: user.email,
       token: generateToken(user._id)
     });
@@ -62,7 +62,7 @@ exports.loginUser = async (req, res) => {
 
     res.status(200).json({
       _id: user._id,
-      name: user.name,
+      fullname: user.fullname,
       email: user.email,
       token: generateToken(user._id)
     });
