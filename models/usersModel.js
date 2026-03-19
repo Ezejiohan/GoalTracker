@@ -17,10 +17,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         minlength: 8,
         match: [
-            /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/,
-            "Password must be at least 8 characters long and include at least one number and one special character"
+            /^(?=.*[0-9])(?=.*[!@#$%^&*])/,
+            "Password must contain at least 1 number and 1 special character"
         ]
     }
-}, { timestamps: true })
+}, { timestamps: true });
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongoose.model("User", userSchema);
